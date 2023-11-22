@@ -86,9 +86,19 @@ body {
     cursor: pointer;
 }
 
+
+@media screen and (max-width: 1290px){
+    .logo-image img{
+        width: 13%;
+    }
+}
+
+
+
 @media screen and (max-width: 768px) {
     .logo-image img {
-        width: 20vw;
+        width: 18%;
+        top: 18%;
     }
 
     .login-container {
