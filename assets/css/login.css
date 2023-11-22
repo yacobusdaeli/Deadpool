@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a32633;
+    /* Warna merah seperti Deadpool */
+}
+
+.logo-image img {
+    
+    display: flex;
+    flex-wrap: wrap;
+    position:fixed;
+    /* Add this line to make the image stay in place */
+    top: 0.9vh;
+    /* Adjust this value to control the distance above the login header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9em;
+    /* Adjust this value for the width of the image in viewport units */
+}
+
+.login-container {
+    background-color: #343339;
+    /* Warna latar belakang box */
+    padding: 2rem 10rem 2rem 10rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 25rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sign-up-link {
+    display: block;
+    margin-top: 4rem;
+    color: #fff;
+    /* Warna tulisan link */
+}
+
+.sign-up-link a {
+    text-decoration: none;
+    color: #a32633;
+}
+
+.login-button {
+    background-color: #962333;
+    /* Warna merah untuk tombol login */
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 2rem;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .logo-image img {
+        width: 20vw;
+    }
+
+    .login-container {
+        padding: 1rem;
+    }
+
+    .login-header {
+        font-size: 2vw;
+    }
+
+    .form-group label {
+        font-size: 2vw;
+    }
+
+    .form-group input {
+        width: 80%;
+    }
+
+    .sign-up-link {
+        margin-top: 1.5rem;
+    }
+    .sign-up-link p{
+        font-size: 70%;
+    }
+
+    .login-button {
+        font-size: 2vw;
+        padding: 1.5vw 4vw;
+        margin-top: 1.5rem;
+    }
