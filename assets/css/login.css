@@ -14,31 +14,24 @@ body {
     /* Warna merah seperti Deadpool */
 }
 
+.logo-image{
+    text-align : center;
+}
+
 .logo-image img {
     
-    display: flex;
-    flex-wrap: wrap;
-    position:fixed;
-    /* Add this line to make the image stay in place */
-    top: 0.9vh;
-    /* Adjust this value to control the distance above the login header */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 9em;
+    margin-bottom : -0.5rem;
+    width: 8.8em;
     /* Adjust this value for the width of the image in viewport units */
 }
 
+.logo-image-register{
+    text-align: center;
+}
+
 .logo-image-register img{
-    display: flex;
-    flex-wrap: wrap;
-    position:fixed;
-    /* Add this line to make the image stay in place */
-    top: -1vh;
-    /* Adjust this value to control the distance above the login header */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 7em;
-    /* Adjust this value for the width of the image in viewport units */
+    margin-bottom: -0.5rem;
+    width: 8.8em;
 }
 
 .login-container {
