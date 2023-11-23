@@ -28,6 +28,19 @@ body {
     /* Adjust this value for the width of the image in viewport units */
 }
 
+.logo-image-register img{
+    display: flex;
+    flex-wrap: wrap;
+    position:fixed;
+    /* Add this line to make the image stay in place */
+    top: -1vh;
+    /* Adjust this value to control the distance above the login header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7em;
+    /* Adjust this value for the width of the image in viewport units */
+}
+
 .login-container {
     background-color: #343339;
     /* Warna latar belakang box */
@@ -91,14 +104,21 @@ body {
     .logo-image img{
         width: 13%;
     }
+    .logo-image-register img{
+        width: 10%;
+        top: 0.2vh;
+    }
 }
-
-
 
 @media screen and (max-width: 768px) {
     .logo-image img {
         width: 18%;
         top: 18%;
+    }
+    
+    .logo-image-register img{
+        width: 15%;
+        top: 16vh;
     }
 
     .login-container {
