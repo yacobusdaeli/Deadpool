@@ -2,6 +2,68 @@ html,
 body {
   height: 100%;
   margin: 0;
+  font-family: "Poppins";
+}
+
+.navbar-section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3; /* Set a higher z-index to place it in front of other elements */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  margin-top: -0.3rem;
+  margin-right: 18rem;
+}
+
+.logo-container {
+  margin-right: auto; /* Pushes the logo to the left */
+  padding: 0.5rem;
+}
+
+.logo {
+  width: 250px; /* Adjust the size of the logo as needed */
+  height: auto;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding: 1rem;
+  position: relative; /* Add this to make the ::after pseudo-element position relative to the anchor */
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+  height: 3px;
+  width: 0;
+  left: 0; /* Center the line under the link */
+  bottom: 4px;
+  transition: 0.5s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+  left: 0; /* Move the line to the left edge on hover */
 }
 
 .overlay-container {
@@ -24,7 +86,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 0; /* Set a lower z-index to place it behind other elements */
 }
 
