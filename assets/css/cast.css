@@ -74,7 +74,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 3; /* Set a higher z-index to place it in front of other elements */
+  z-index: 10; /* Set a higher z-index to place it in front of other elements */
 }
 
 .navbar {
@@ -201,3 +201,74 @@ body {
   text-align: center;
 }
 /* End Footer */
+
+/* Start Content  */
+.header-cast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  color: white;
+}
+
+/* Start Content  */
+.header-cast {
+  position: fixed;
+  top: 40%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  padding: 20px;
+  margin: 0 3rem 20px; /* Adjust the margin to add space between cards */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.card-link:hover {
+  /* Add any additional styles for the hover effect */
+}
+
+/* End content  */
+
+/* Begin Search Bar  */
+
+/* End Search Bar */
