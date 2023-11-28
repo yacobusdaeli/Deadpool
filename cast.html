@@ -24,8 +24,14 @@
             <div class="logo-container">
                 <img class="logo" src="assets/css/logo.png" alt="Logo">
             </div>
+
+            <!-- Toggle button for small screens -->
+            <div class="toggle-btn" onclick="toggleNavbar()">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="homepage.html">Home</a></li>
                 <li><a href="cast.html">Cast</a></li>
                 <li><a href="achievement.html">Achievement</a></li>
                 <li><a href="synopsis.html">Synopsis</a></li>
@@ -39,11 +45,9 @@
     <div class="header-cast">
         <h1>THE CAST</h1>
 
-
-
         <div class="card-container">
             <!-- Card 1 -->
-            <a href="ryan_reynolds_page.html" class="card-link">
+            <a href="card.html" class="card-link">
                 <div class="card">
                     <img src="assets/css/card1.jpg" alt="Photo 1">
                     <p>Ryan Reynolds</p>
@@ -94,5 +98,14 @@
     </div>
     <!-- End footer  -->
 </body>
+
+<!-- JavaScript for toggling navbar on small screens -->
+<script>
+    function toggleNavbar() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+    }
+</script>
+
 
 </html>

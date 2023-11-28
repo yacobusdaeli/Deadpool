@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
   font-family: "Poppins";
+  background-color: #20252c;
 }
 
 /* Start button trailer  */
@@ -201,3 +202,57 @@ body {
   text-align: center;
 }
 /* End Footer */
+
+/* Start Card  */
+
+.container-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.card-img {
+  margin: 7rem 0 0 10rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.content-desc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: #fff;
+}
+
+.desc-card {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.header-desc {
+  color: #fff;
+}
+.header-desc span {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #a32633;
+  text-shadow: 2px 2px 3px red;
+}
+
+.header-desc p {
+  margin-top: -0.7rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* End Card  */
