@@ -74,7 +74,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 3; /* Set a higher z-index to place it in front of other elements */
+  z-index: 30; /* Set a higher z-index to place it in front of other elements */
 }
 
 .navbar {
@@ -202,60 +202,76 @@ body {
 }
 /* End Footer */
 
-/* Start Card  */
+/* Start container-achieve  */
+.container-achieve {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.container-achieve h1 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* Start Achievement Cards  */
+
+.header-achieve {
+  position: absolute;
+  top: 22%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+  color: white;
+}
 
 .container-card-card {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
-  font-family: "Poppins";
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  column-gap: 10rem;
+  row-gap: 3rem;
+}
+
+.card {
+  background-color: #333;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-card {
-  margin: 7rem 0 0 10rem;
-  max-width: 100%;
-  height: auto;
+  text-align: center;
+}
+
+.card-img-card i {
+  font-size: 2rem;
+  color: #fff;
 }
 
 .content-desc-card {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-
   color: #fff;
 }
 
-.desc-card-card {
-  display: flex;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  width: 70%;
-}
-
-.header-desc-card {
-  color: #fff;
-}
 .header-desc-card span {
-  display: block;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #a32633;
-  text-shadow: 2px 2px 3px red;
 }
 
 .header-desc-card p {
   margin-top: -0.7rem;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 0.2rem;
+  font-weight: 500;
 }
-
-/* End Card  */
-
-/* Start Achievement  */
-
-/* End Achievement  */
+/* End Achievement Cards  */
