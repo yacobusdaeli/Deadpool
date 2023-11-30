@@ -1,0 +1,330 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins";
+}
+
+/* Start button trailer  */
+.container-button {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 0 5rem;
+}
+
+.button-trailer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.button-trailer a:link,
+.button-trailer a:visited {
+  color: #fff;
+}
+
+.button-trailer a:hover {
+  color: #ff0000;
+  /* Change the color on hover */
+}
+
+.button-trailer {
+  background-color: #962333;
+  /* Warna merah untuk tombol login */
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* Align the icon and text vertically */
+}
+
+.button-trailer span {
+  margin-top: 0.5px;
+}
+
+.button-trailer i {
+  margin-right: 10px;
+  margin-left: -10px;
+  display: inline;
+}
+
+/* End button trailer  */
+
+/* Start Description section */
+.container-desc {
+  position: fixed;
+  top: 0;
+  z-index: 4;
+}
+
+.main {
+  color: #fff;
+  width: 480px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 10rem 0 0rem 5rem;
+}
+
+/* End description section */
+
+.navbar-section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  /* Set a higher z-index to place it in front of other elements */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  margin-top: -0.3rem;
+  margin-right: 18rem;
+}
+
+.logo-container {
+  margin-right: auto;
+  /* Pushes the logo to the left */
+  padding: 0.5rem;
+}
+
+.logo {
+  width: 250px;
+  /* Adjust the size of the logo as needed */
+  height: auto;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding: 1rem;
+  position: relative;
+  /* Add this to make the ::after pseudo-element position relative to the anchor */
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+  height: 3px;
+  width: 0;
+  left: 0;
+  /* Center the line under the link */
+  bottom: 4px;
+  transition: 0.5s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+  left: 0;
+  /* Move the line to the left edge on hover */
+}
+
+/* Start overlay container  */
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  /* Set a lower z-index to place it behind other elements */
+}
+
+.content-img {
+  position: absolute;
+  top: 10%;
+  left: 75%;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  z-index: 2;
+  /* Set a higher z-index to place it in front */
+}
+
+.overlay-image {
+  width: 120vh;
+  height: auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.slicing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #20252c;
+  clip-path: polygon(100% -25%, 100% 100%, 25% 100%);
+  z-index: 0;
+  /* Set a lower z-index to place it behind other elements */
+}
+
+/* End overlay container  */
+
+/* Start footer  */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #13171b;
+  color: white;
+  text-align: center;
+}
+
+/* End Footer */
+
+/* Start Card  */
+
+.container-card-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.card-img-card {
+  margin: 7rem 0 0 10rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.content-desc-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: #fff;
+}
+
+.desc-card-card {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.header-desc-card {
+  color: #fff;
+}
+
+.header-desc-card span {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #a32633;
+  text-shadow: 2px 2px 3px red;
+}
+
+.header-desc-card p {
+  margin-top: -0.7rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* End Card  */
+
+/* Start synopsis  */
+/* Start Content Synopsis  */
+.container-sinopsis {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+
+  color: white;
+}
+
+.header-sinopsis {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.image-sinopsis {
+  width: 40%;
+  height: auto;
+}
+
+.image-sinopsis img {
+  width: 350px;
+  height: auto;
+  margin-right: 4rem;
+}
+
+.head-desc {
+  display: block;
+  font-weight: bold;
+}
+
+.card-sinopsis {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row; /* Arrange child elements in a row */
+  align-items: center;
+  max-width: 70%;
+}
+
+.content-sinopsis {
+  text-align: left;
+  margin-top: -2rem;
+}
+
+.desc-sinopsis a{
+  color: #A32633;
+}
+
+/* End Content Synopsis  */
+
+/* End synopsis  */
