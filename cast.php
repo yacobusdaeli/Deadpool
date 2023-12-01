@@ -1,13 +1,10 @@
 <?php
+require 'method.php';
 session_start();
-if (!isset($_SESSION['user']) or !!isset($_SESSION['admin'])) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-}
+
+$query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
+$cast = tampilsemua($query);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +15,7 @@ if (!isset($_SESSION['user']) or !!isset($_SESSION['admin'])) {
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/cast.css">
 </head>
 
 <body>
@@ -27,54 +23,70 @@ if (!isset($_SESSION['user']) or !!isset($_SESSION['admin'])) {
     <div class="overlay-container">
         <img class="background-image" src="assets/css/background.jpg" alt="Background Image">
         <div class="overlay"></div>
-        <div class="content-img">
-            <!-- Your content goes here -->
-            <img class="overlay-image" src="assets/css/home.png" alt="Overlay Image">
-        </div>
         <div class="slicing"></div>
     </div>
+
     <!-- Navbar section -->
     <div class="navbar-section">
         <div class="navbar">
             <div class="logo-container">
                 <img class="logo" src="assets/css/logo.png" alt="Logo">
+
             </div>
+
+            <!-- Toggle button for small screens -->
+            <div class="toggle-btn" onclick="toggleNavbar()">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="home.php">Home</a></li>
                 <li><a href="cast.php">Cast</a></li>
                 <li><a href="achievement.php">Achievement</a></li>
                 <li><a href="synopsis.php">Synopsis</a></li>
-
-                <!-- Add more navigation links as needed -->
             </ul>
         </div>
     </div>
     <!-- End navbar section -->
 
-    <!-- Start description -->
-    <div class="container-desc">
-        <div class="main">
-            <h1>Hi, Im Deadpool !</h1>
-            <p>Deadpool adalah sebuah film pahlawan super Amerika yang berdasarkan pada karakter Marvel Comics dengan
-                nama yang sama. Film tersebut merupakan instalmen kedelapan dalam serial film X-Men</p>
-        </div>
-        <div class="container-button">
+    <!-- Start Content Cast -->
+    <!-- Start Content Cast -->
+    <div class="header-cast">
+        <h1>THE CAST</h1>
 
-            <button type="submit" class="button-trailer">
-                <a href="synopsis.html">
-                    <i class="fa-solid fa-play fa-lg" style="color: #ffffff;"></i>
-                    <span>Read More</span>
-                </a>
+        <div class="card-container">
+
+            <?php foreach ($cast as $baris): ?>
+            <!-- Card 1 -->
+            <a href="card.php?id_tokoh=<?=$baris['id_tokoh']?>" class="card-link">
+                <div class="card">
+                    <img src="assets/css/card1.jpg" alt="Photo 1">
+                    <p><?=$baris['nama_asli']?></p>
+                    <p><?=$baris['nama_tokoh']?></p>
+                </div>
+            </a>
+            <?php endforeach?>
+
         </div>
     </div>
+    <!-- End Content Cast -->
 
-    <!-- End Description  -->
+    <!-- End Content Cast -->
 
     <!-- Start footer  -->
     <div class="footer">
         <p> © 2023 Deadpool Project</p>
     </div>
-    <!-- end footer  -->
+    <!-- End footer  -->
 </body>
+
+<!-- JavaScript for toggling navbar on small screens -->
+<script>
+function toggleNavbar() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+}
+</script>
+
 
 </html>

@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
         if ($password == $row["password"] && $row['role'] == 'user') {
 
             $_SESSION["user"] = true;
-            header("Location: start.php");
+            header("Location: homepage.php");
             exit;
         } else if ($password == $row["password"] && $row['role'] == 'admin') {
             $_SESSION["admin"] = true;
@@ -32,7 +32,7 @@ if (isset($_POST['login'])) {
     } else {
         echo "
         <script>
-        alert('Tidak ada username ini');
+        alert('Tidak ada email ini');
         </script>
         ";
     }
@@ -60,7 +60,7 @@ if (isset($_POST['login'])) {
             <h1>LOGIN</h1>
         </div>
 
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="email"></label>
                 <input type="email" id="email" name="email" placeholder="Email" required>
@@ -80,8 +80,6 @@ if (isset($_POST['login'])) {
 
     </div>
 </div>
-
-<body>
 
 </body>
 

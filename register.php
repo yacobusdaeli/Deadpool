@@ -31,12 +31,12 @@ if (isset($_POST['register'])) {
 <div class="logo-image-register">
     <img src="/assets/css/register-image.png" alt="Deadpool Smiley">
 
-    <div class="login-container">
+    <div class="login-container" style="margin-bottom: 30px;">
         <div class="login-header">
             <h1>Sign Up</h1>
         </div>
 
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="username"></label>
                 <input type="username" id="username" name="username" placeholder="Username" required>
@@ -49,12 +49,16 @@ if (isset($_POST['register'])) {
                 <label for="password"></label>
                 <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
-
-            <div class="sign-up-link">
-                <p>Already have an accout ? <a href="register.html">Login</a></p>
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="password" id="password" name="password2" placeholder="Confirm password" required>
             </div>
 
-            <button type="submit" class="login-button">Login</button>
+            <div class="sign-up-link">
+                <p>Already have an accout ? <a href="login.php">Login</a></p>
+            </div>
+
+            <button type="submit" class="login-button" name="register">Register</button>
         </form>
     </div>
 </div>
