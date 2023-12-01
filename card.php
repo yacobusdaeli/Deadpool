@@ -7,7 +7,6 @@ $query = "SELECT * FROM pemeran WHERE id_tokoh = $id";
 $cast = tampilsemua($query)[0];
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,78 +18,77 @@ $cast = tampilsemua($query)[0];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/card.css" />
 </head>
 
 <body>
-    <div class="container-card">
-        <div class="card-img">
+    <div class="container-card-card">
+        <div class="card-img-card">
             <img src="assets/css/card.png" alt="Ryan Reynolds" />
         </div>
-        <div class="content-card">
-            <div class="header-desc">
+
+        <div class="content-card-card">
+            <div class="header-desc-card">
                 <span><?=$cast['nama_tokoh']?></span>
                 <p><?=$cast['nama_asli']?></p>
             </div>
             <div class="content-desc">
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td>:</td>
-                        <td><?=$cast['nama_panjang']?></td>
-                    </tr>
-                    <tr>
-                        <td>Born</td>
-                        <td>:</td>
-                        <td><?=$cast['lahir']?></td>
-                    </tr>
-                    <tr>
-                        <td>Citizenship</td>
-                        <td>:</td>
-                        <td><?=$cast['negara']?></td>
-                    </tr>
-                    <tr>
-                        <td>Occupations</td>
-                        <td>:</td>
-                        <td><?=$cast['pekerjaan']?></td>
-                    </tr>
-                    <tr>
-                        <td>Years Active</td>
-                        <td>:</td>
-                        <td><?=$cast['tahun_aktif']?></td>
-                    </tr>
-                </table>
+                <div class="content-desc-card">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td><?=$cast['nama_panjang']?></td>
+                        </tr>
+                        <tr>
+                            <td>Born</td>
+                            <td>:</td>
+                            <td><?=$cast['lahir']?></td>
+                        </tr>
+                        <tr>
+                            <td>Citizenship</td>
+                            <td>:</td>
+                            <td><?=$cast['negara']?></td>
+                        </tr>
+                        <tr>
+                            <td>Occupations</td>
+                            <td>:</td>
+                            <td><?=$cast['pekerjaan']?></td>
+                        </tr>
+                        <tr>
+                            <td>Years Active</td>
+                            <td>:</td>
+                            <td><?=$cast['tahun_aktif']?></td>
+                        </tr>
+                    </table>
+                </div>
+                <span class="desc-card-card">
+                    <?=$cast['biografi']?>
+                </span>
             </div>
-            <span class="desc-card">
-                <?=$cast['biografi']?>
-            </span>
+        </div>
+
+        <!-- Navbar section -->
+        <div class="navbar-section">
+            <div class="navbar">
+                <div class="logo-container">
+                    <img class="logo" src="assets/css/logo.png" alt="Logo" />
+                </div>
+                <ul class="nav-links">
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="cast.php">Cast</a></li>
+                    <li><a href="achievement.php">Achievement</a></li>
+                    <li><a href="synopsis.php">Synopsis</a></li>
+
+                    <!-- Add more navigation links as needed -->
+                </ul>
+            </div>
         </div>
     </div>
 
-    <!-- Navbar section -->
-    <div class="navbar-section">
-        <div class="navbar">
-            <div class="logo-container">
-                <img class="logo" src="assets/css/logo.png" alt="Logo" />
-            </div>
-            <ul class="nav-links">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="cast.php">Cast</a></li>
-                <li><a href="achievement.php">Achievement</a></li>
-                <li><a href="synopsis.php">Synopsis</a></li>
-
-                <!-- Add more navigation links as needed -->
-            </ul>
-        </div>
-    </div>
-    <!-- End navbar section -->
-
-    <!-- End Description  -->
-
-    <!-- Start footer  -->
     <div class="footer">
         <p>© 2023 Deadpool Project</p>
     </div>
-    <!-- end footer  -->
 </body>
 
 </html>
