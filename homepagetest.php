@@ -1,14 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user']) or !!isset($_SESSION['admin'])) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,10 +29,10 @@ if (!isset($_SESSION['user']) or !!isset($_SESSION['admin'])) {
                 <img class="logo" src="assets/css/logo.png" alt="Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="cast.php">Cast</a></li>
-                <li><a href="achievement.php">Achievement</a></li>
-                <li><a href="synopsis.php">Synopsis</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="cast.html">Cast</a></li>
+                <li><a href="achievement.html">Achievement</a></li>
+                <li><a href="synopsis.html">Synopsis</a></li>
 
                 <!-- Add more navigation links as needed -->
             </ul>
