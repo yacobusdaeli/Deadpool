@@ -13,12 +13,12 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_array($query);
 
         if ($password == $row["password"] && $row['role'] == 'user') {
-
-            $_SESSION["user"] = true;
+            $_SESSION['admin'] = false;
+            $_SESSION['user'] = true;
             header("Location: homepage.php");
             exit;
         } else if ($password == $row["password"] && $row['role'] == 'admin') {
-            $_SESSION["admin"] = true;
+            $_SESSION['admin'] = true;
             header("Location: admin/admin_home.php");
             exit;
         } else {

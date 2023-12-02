@@ -1,21 +1,6 @@
 <?php
-require 'method.php';
+require '../method.php';
 session_start();
-if (!isset($_SESSION["user"])) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-} else if (!isset($_SESSION["admin"])) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-}
 
 $query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
@@ -30,13 +15,13 @@ $cast = tampilsemua($query);
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/cast.css">
+    <link rel="stylesheet" href="../assets/css/cast.css">
 </head>
 
 <body>
 
     <div class="overlay-container">
-        <img class="background-image" src="assets/css/background.jpg" alt="Background Image">
+        <img class="background-image" src="../assets/css/background.jpg" alt="Background Image">
         <div class="overlay"></div>
         <div class="slicing"></div>
     </div>
@@ -45,7 +30,7 @@ $cast = tampilsemua($query);
     <div class="navbar-section">
         <div class="navbar">
             <div class="logo-container">
-                <img class="logo" src="assets/css/logo.png" alt="Logo">
+                <button style="width: 250px; height:70px;font-weight: 700;font-size: 30px">ADMIN</button>
 
             </div>
 
@@ -56,9 +41,9 @@ $cast = tampilsemua($query);
 
             <ul class="nav-links">
                 <li><a href="homepage.php">Home</a></li>
-                <li><a href="cast.php">Cast</a></li>
+                <li><a href="data_cast.php">Cast</a></li>
+                <li><a href="film.php">Film</a></li>
                 <li><a href="achievement.php">Achievement</a></li>
-                <li><a href="synopsis.php">Synopsis</a></li>
             </ul>
         </div>
     </div>
@@ -73,9 +58,9 @@ $cast = tampilsemua($query);
 
             <?php foreach ($cast as $baris): ?>
             <!-- Card 1 -->
-            <a href="card.php?id_tokoh=<?=$baris['id_tokoh']?>" class="card-link">
+            <a href="card_edit.php?id_tokoh=<?=$baris['id_tokoh']?>" class="card-link">
                 <div class="card">
-                    <img src="assets/css/card1.jpg" alt="Photo 1">
+                    <img src="../assets/css/card1.jpg" alt="Photo 1">
                     <p><?=$baris['nama_asli']?></p>
                     <p><?=$baris['nama_tokoh']?></p>
                 </div>

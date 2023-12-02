@@ -42,30 +42,50 @@ function editCast($data)
 {
     global $conn;
     $id_tokoh = $data['id_tokoh'];
+    $nama_panjang = $data['nama_panjang'];
     $nama_asli = $data['nama_asli'];
     $nama_tokoh = $data['nama_tokoh'];
+
+    $lahir = $data['lahir'];
+    $negara = $data['negara'];
+    $pekerjaan = $data['pekerjaan'];
+    $tahun_aktif = $data['tahun_aktif'];
+
     $biografi = $data['biografi'];
     $id_film = $data['id_film'];
     $fotoLama = $data['fotoLama'];
-
+    $fotocardlama = $data['fotocardlama'];
     //cek user update foto
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $foto = uploadFoto();
-    } else {
         $foto = $fotoLama;
+    } else {
+        $foto = uploadFoto();
+    }
+
+    if ($_FILES['fotocard']['error'] === UPLOAD_ERR_OK) {
+        $fotocard = $fotocardlama;
+    } else {
+        $fotocard = uploadFotoCard();
+
     }
 
     $query = "UPDATE pemeran
               SET
+              nama_panjang = ?
               nama_asli = ?,
               nama_tokoh = ?,
+              lahir = ?,
+              negara = ?,
+              pekerjaan= ?,
+              tahun_aktif = ?,
               biografi = ?,
               id_film = ?,
-              foto = ?
+              foto = ?,
+              fotocard = ?
               WHERE id_tokoh = ?";
 
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssi', $nama_asli, $nama_tokoh, $biografi, $id_film, $foto, $id_tokoh);
+    mysqli_stmt_bind_param($stmt, 'sssssi', $nama_panjang, $nama_asli, $nama_tokoh, $lahir, $negara, $pekerjaan, $tahun_aktif, $biografi, $id_film, $foto, $fotocard, $id_tokoh);
     mysqli_stmt_execute($stmt);
 
     return mysqli_stmt_affected_rows($stmt);
@@ -189,5 +209,40 @@ function uploadFoto()
     }
 
     move_uploaded_file($tmpName, '../foto/' . $namafile);
+    return $namafile;
+}
+
+function uploadFotoCard()
+{
+    $namafile = $_FILES['fotocard']['name'];
+    $ukuranfile = $_FILES['fotocard']['size'];
+    $error = $_FILES['fotocard']['error'];
+
+    $tmpName = $_FILES['fotocard']['tmp_name'];
+
+    //cek apakah ada gambar yang di upload
+    if ($error === 4) {
+        echo "
+        <script>
+            alert('Gambar belum diupload');
+        </script>
+        ";
+        return false;
+    }
+
+    //cek ekstensi
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ekstensiGambar = explode('.', $namafile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "
+        <script>
+            alert('Bukan gambar yang anda upload');
+        </script>
+        ";
+    }
+
+    move_uploaded_file($tmpName, '../fotocard/' . $namafile);
     return $namafile;
 }

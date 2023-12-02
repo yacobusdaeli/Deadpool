@@ -1,6 +1,21 @@
 <?php
 require 'method.php';
 session_start();
+if (!isset($_SESSION["user"])) {
+    echo "
+    <script> alert('Anda melakukan hal ilegal');
+    document.location.href= 'login.php';
+    </script>
+    ";
+    exit();
+} else if (!isset($_SESSION["admin"])) {
+    echo "
+    <script> alert('Anda melakukan hal ilegal');
+    document.location.href= 'login.php';
+    </script>
+    ";
+    exit();
+}
 
 $id = $_GET['id_tokoh'];
 $query = "SELECT * FROM pemeran WHERE id_tokoh = $id";
@@ -75,7 +90,7 @@ $cast = tampilsemua($query)[0];
                     <img class="logo" src="assets/css/logo.png" alt="Logo" />
                 </div>
                 <ul class="nav-links">
-                    <li><a href="home.php">Home</a></li>
+                    <li><a href="homepage.php">Home</a></li>
                     <li><a href="cast.php">Cast</a></li>
                     <li><a href="achievement.php">Achievement</a></li>
                     <li><a href="synopsis.php">Synopsis</a></li>

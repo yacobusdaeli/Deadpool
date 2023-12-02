@@ -1,4 +1,5 @@
 <?php
+require 'method.php';
 session_start();
 if (!isset($_SESSION["user"])) {
     echo "
@@ -15,6 +16,11 @@ if (!isset($_SESSION["user"])) {
     ";
     exit();
 }
+
+$id = $_GET['id_film'];
+$query = "SELECT*FROM film WHERE id_film=$id";
+$film = tampilsemua($query)[0];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,21 +31,43 @@ if (!isset($_SESSION["user"])) {
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/synopsisdetail.css">
 </head>
 
 <body>
 
-    <div class="overlay-container">
-        <img class="background-image" src="assets/css/background.jpg" alt="Background Image">
-        <div class="overlay"></div>
-        <div class="content-img">
-            <!-- Your content goes here -->
-            <img class="overlay-image" src="assets/css/home.png" alt="Overlay Image">
+    <div class="container-card-card">
+        <div class="card-img-card">
+            <span><?=$film['film']?></span>
+            <img src="assets/css/deadpool1.jpeg" alt="Ryan Reynolds">
         </div>
-        <div class="slicing"></div>
+        <div class="content-card-card">
+            <div class="content-desc-card">
+                <table>
+                    <tr>
+                        <td>Genre</td>
+                        <td>:</td>
+                        <td><?=$film['genre']?></td>
+                    </tr>
+                    <tr>
+                        <td>Director</td>
+                        <td>:</td>
+                        <td><?=$film['director']?></td>
+                    </tr>
+                    <tr>
+                        <td>Writers</td>
+                        <td>:</td>
+                        <td><?=$film['writers']?></td>
+                    </tr>
+
+                </table>
+            </div>
+            <span class="desc-card-card">
+                <?=$film['sinopsis']?>
+            </span>
+        </div>
     </div>
+
     <!-- Navbar section -->
     <div class="navbar-section">
         <div class="navbar">
@@ -58,22 +86,6 @@ if (!isset($_SESSION["user"])) {
     </div>
     <!-- End navbar section -->
 
-    <!-- Start description -->
-    <div class="container-desc">
-        <div class="main">
-            <h1>Hi, Im Deadpool !</h1>
-            <p>"Deadpool is an American superhero film based on the Marvel Comics character of the same name. The film
-                is the eighth installment in the X-Men film series."</p>
-        </div>
-        <div class="container-button">
-
-            <button type="submit" class="button-trailer">
-                <a href="synopsis.php">
-                    <i class="fa-solid fa-play fa-lg" style="color: #ffffff;"></i>
-                    <span>Read More</span>
-                </a>
-        </div>
-    </div>
 
     <!-- End Description  -->
 
