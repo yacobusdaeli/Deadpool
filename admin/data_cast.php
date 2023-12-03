@@ -1,8 +1,15 @@
 <?php
 require '../method.php';
 session_start();
-
-$query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
+if (!isset($_SESSION["admin"])) {
+    echo "
+    <script> alert('Anda melakukan hal ilegal');
+    document.location.href= 'login.php';
+    </script>
+    ";
+    exit();
+}
+$query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
 
 ?>
@@ -15,69 +22,78 @@ $cast = tampilsemua($query);
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/cast.css">
+    <style>
+    .container-fluid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .link button {
+        margin-bottom: 30px;
+    }
+
+    .container {
+        margin: 70px;
+    }
+    </style>
 </head>
 
 <body>
 
-    <div class="overlay-container">
-        <img class="background-image" src="../assets/css/background.jpg" alt="Background Image">
-        <div class="overlay"></div>
-        <div class="slicing"></div>
-    </div>
-
-    <!-- Navbar section -->
-    <div class="navbar-section">
-        <div class="navbar">
-            <div class="logo-container">
-                <button style="width: 250px; height:70px;font-weight: 700;font-size: 30px">ADMIN</button>
-
-            </div>
-
-            <!-- Toggle button for small screens -->
-            <div class="toggle-btn" onclick="toggleNavbar()">
-                <i class="fas fa-bars"></i>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="data_cast.php">Cast</a></li>
-                <li><a href="film.php">Film</a></li>
-                <li><a href="achievement.php">Achievement</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- End navbar section -->
-
-    <!-- Start Content Cast -->
-    <!-- Start Content Cast -->
-    <div class="header-cast">
-        <h1>THE CAST</h1>
-
-        <div class="card-container">
-
-            <?php foreach ($cast as $baris): ?>
-            <!-- Card 1 -->
-            <a href="card_edit.php?id_tokoh=<?=$baris['id_tokoh']?>" class="card-link">
-                <div class="card">
-                    <img src="../assets/css/card1.jpg" alt="Photo 1">
-                    <p><?=$baris['nama_asli']?></p>
-                    <p><?=$baris['nama_tokoh']?></p>
-                </div>
+    <div class="container-fluid">
+        <div class="container">
+            <h1>Halaman Cast</h1>
+            <a class="link" href="admin_home.php">
+                <button>Home</button>
             </a>
-            <?php endforeach?>
 
+            <a class="link" href="add_cast.php">
+                <button>Tambah Cast</button>
+            </a>
+
+            <table border="3" cell>
+                <tr>
+                    <th>Aksi</th>
+                    <th>Foto Card</th>
+                </tr>
+
+                <?php foreach ($cast as $baris): ?>
+                <tr>
+                    <th style="display: flex">
+                        <a href="edit_cast.php?id_tokoh=<?=$baris['id_tokoh']?>"
+                            class="card-link"><button>Edit</button></a>
+
+                        <form method="post">
+                            <button name="hapus" value="<?=$baris['nama_tokoh']?>">Hapus</button>
+                        </form>
+
+                    </th>
+                    <th>
+                        <div class="card">
+                        </div><img style="width : 160px" src="../fotocard/<?=$baris['fotocard']?>" alt="Photo 1">
+                    </th>
+
+                </tr>
+                <?php endforeach?>
+
+            </table>
         </div>
-    </div>
-    <!-- End Content Cast -->
 
-    <!-- End Content Cast -->
-
-    <!-- Start footer  -->
-    <div class="footer">
-        <p> © 2023 Deadpool Project</p>
     </div>
-    <!-- End footer  -->
+
+
+
+
+
+
+    <!-- Start Content Cast -->
+    <!-- Start Content Cast -->
+
+
 </body>
 
 <!-- JavaScript for toggling navbar on small screens -->

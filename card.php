@@ -39,7 +39,7 @@ $cast = tampilsemua($query)[0];
 <body>
     <div class="container-card-card">
         <div class="card-img-card">
-            <img src="assets/css/card.png" alt="Ryan Reynolds" />
+            <img style="margin:70px; max-width: 400px;" src="foto/<?=$cast['foto']?>" alt="Ryan Reynolds" />
         </div>
 
         <div class="content-card-card">

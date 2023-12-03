@@ -1,6 +1,14 @@
 <?php
 require '../method.php';
 session_start();
+if (!isset($_SESSION["admin"])) {
+    echo "
+    <script> alert('Anda melakukan hal ilegal');
+    document.location.href= 'login.php';
+    </script>
+    ";
+    exit();
+}
 global $conn;
 
 $query = "SELECT*FROM role ORDER BY role ASC";
@@ -20,46 +28,74 @@ if (isset($_POST['hapus'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Admin</title>
+    <style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .container-fluid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .link button {
+        margin-bottom: 30px;
+    }
+
+    .container {
+        margin: 70px;
+    }
+    </style>
 </head>
 
 <body>
-    <h1>Halaman admin</h1>
-    <button>
-        <a href="data_cast.php">data cast</a>
-    </button>
-    <button>
-        <a href="data_film.php">data film</a>
-    </button>
-    <table border="3" cellpadding="3" cellspacing="10">
-        <tr>
-            <th>No</th>
-            <th>Aksi</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
-        </tr>
+    <div class="container-fluid">
+        <div class="container">
+
+            <h1>Halaman admin</h1>
+
+            <a class="link" href="data_cast.php"><button>data cast</button></a>
 
 
-        <?php $i = 1?>
-        <?php foreach ($user as $row): ?>
-        <tr>
-            <td><?=$i?></td>
-            <form method="post">
-                <td>
-                    <button name="hapus" value="<?=$row['username']?>">
-                        hapus
-                    </button>
-                </td>
-            </form>
-            <td><?=$row['username']?></td>
-            <td><?=$row['email']?></td>
+            <a class="link" href="data_film.php"><button>data film</button></a>
 
-            <td><?=$row['role']?></td>
-        </tr>
-        <?php $i++?>
-        <?php endforeach;?>
+            <table border="3" cellpadding="3" cellspacing="10">
+                <tr>
+                    <th>No</th>
+                    <!-- <th>Aksi</th> -->
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
 
-    </table>
+
+                <?php $i = 1?>
+                <?php foreach ($user as $row): ?>
+                <tr>
+                    <td><?=$i?></td>
+                    <!-- <form method="post">
+                        <td>
+                            <button name="hapus" value="<?=$row['username']?>">
+                                hapus
+                            </button>
+                        </td>
+                    </form> -->
+                    <td><?=$row['username']?></td>
+                    <td><?=$row['email']?></td>
+
+                    <td><?=$row['role']?></td>
+                </tr>
+                <?php $i++?>
+                <?php endforeach;?>
+
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

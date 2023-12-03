@@ -9,20 +9,29 @@ $conn = mysqli_connect($host, $user, $pass, $db);
 function addCast($data)
 {
     global $conn;
+
     $nama_asli = $data['nama_asli'];
+    $nama_panjang = $data['nama_panjang'];
     $nama_tokoh = $data['nama_tokoh'];
     $biografi = $data['biografi'];
+    $lahir = $data['lahir'];
+    $negara = $data['negara'];
+    $pekerjaan = $data['pekerjaan'];
+    $tahun_aktif = $data['tahun_aktif'];
     $id_film = $data['id_film'];
-    //upload gambar
+
+    // Upload foto
     $foto = uploadFoto();
-    if (!$foto) {
-        return false;
-    }
 
-    $query = "INSERT INTO pemeran(nama_asli,nama_tokoh,biografi,foto,id_film) VALUES('$nama_asli','$nama_tokoh','$biografi','$foto','$id_film')";
+    // Upload fotocard
+    $fotocard = uploadFotoCard();
 
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+    $query = "INSERT INTO pemeran (nama_panjang, nama_asli, nama_tokoh, biografi, lahir, negara, pekerjaan, tahun_aktif, id_film, foto, fotocard) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'ssssssissss', $nama_panjang, $nama_asli, $nama_tokoh, $biografi, $lahir, $negara, $pekerjaan, $tahun_aktif, $id_film, $foto, $fotocard);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_affected_rows($stmt);
 }
 
 function addFilm($data)
@@ -31,9 +40,12 @@ function addFilm($data)
     $film = $data['film'];
     $trailer = $data['trailer'];
     $sinopsis = $data['sinopsis'];
-    $penghargaan = $data['penghargaan'];
 
-    $query = "INSERT INTO film(film,trailer,sinopsis,penghargaan) VALUES('$film','$trailer','$sinopsis','$penghargaan')";
+    $genre = $data['genre'];
+    $director = $data['director'];
+    $writers = $data['writers'];
+
+    $query = "INSERT INTO film(film,trailer,sinopsis,genre,director, writers) VALUES('$film','$trailer','$sinopsis','$genre','$director','$writers')";
 
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
@@ -53,42 +65,44 @@ function editCast($data)
 
     $biografi = $data['biografi'];
     $id_film = $data['id_film'];
+
     $fotoLama = $data['fotoLama'];
-    $fotocardlama = $data['fotocardlama'];
+    $fotocardLama = $data['fotocardLama'];
     //cek user update foto
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $foto = $fotoLama;
-    } else {
         $foto = uploadFoto();
+    } else {
+        $foto = $fotoLama;
     }
 
     if ($_FILES['fotocard']['error'] === UPLOAD_ERR_OK) {
-        $fotocard = $fotocardlama;
-    } else {
         $fotocard = uploadFotoCard();
+    } else {
+        $fotocard = $fotocardLama;
 
     }
 
     $query = "UPDATE pemeran
-              SET
-              nama_panjang = ?
-              nama_asli = ?,
-              nama_tokoh = ?,
-              lahir = ?,
-              negara = ?,
-              pekerjaan= ?,
-              tahun_aktif = ?,
-              biografi = ?,
-              id_film = ?,
-              foto = ?,
-              fotocard = ?
-              WHERE id_tokoh = ?";
+    SET
+    nama_panjang = ?,
+    nama_asli = ?,
+    nama_tokoh = ?,
+    lahir = ?,
+    negara = ?,
+    pekerjaan = ?,
+    tahun_aktif = ?,
+    biografi = ?,
+    id_film = ?,
+    foto = ?,
+    fotocard = ?
+    WHERE id_tokoh = ?";
 
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssi', $nama_panjang, $nama_asli, $nama_tokoh, $lahir, $negara, $pekerjaan, $tahun_aktif, $biografi, $id_film, $foto, $fotocard, $id_tokoh);
+    mysqli_stmt_bind_param($stmt, 'ssssssissssi', $nama_panjang, $nama_asli, $nama_tokoh, $lahir, $negara, $pekerjaan, $tahun_aktif, $biografi, $id_film, $foto, $fotocard, $id_tokoh);
     mysqli_stmt_execute($stmt);
 
     return mysqli_stmt_affected_rows($stmt);
+
 }
 
 function editFilm($data)

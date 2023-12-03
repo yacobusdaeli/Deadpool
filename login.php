@@ -1,7 +1,10 @@
 <?php
 require 'method.php';
 session_start();
-
+if (isset($_SESSION['user'])) {
+    header("Location: homepage.php");
+    exit();
+}
 if (isset($_POST['login'])) {
 
     $email = $_POST['email'];

@@ -17,7 +17,7 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-$query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
+$query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.fotocard FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
 
 ?>
@@ -75,7 +75,7 @@ $cast = tampilsemua($query);
             <!-- Card 1 -->
             <a href="card.php?id_tokoh=<?=$baris['id_tokoh']?>" class="card-link">
                 <div class="card">
-                    <img src="assets/css/card1.jpg" alt="Photo 1">
+                    <img src="fotocard/<?=$baris['fotocard']?>" alt="Photo 1">
                     <p><?=$baris['nama_asli']?></p>
                     <p><?=$baris['nama_tokoh']?></p>
                 </div>
