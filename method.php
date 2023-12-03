@@ -98,8 +98,11 @@ function editFilm($data)
 
     $id_film = $data['id_film'];
     $sinopsis = $data['sinopsis'];
-    $penghargaan = $data['penghargaan'];
     $trailer = $data['trailer'];
+
+    $writers = $data['writers'];
+    $director = $data['director'];
+    $genre = $data['genre'];
 
     //cek apakah ganti nama film
     $film_lama = $data['film_lama'];
@@ -107,22 +110,22 @@ function editFilm($data)
 
     if ($film === $film_lama) {
         $film = $film_lama;
-    } else {
+    } else if ($film !== $film_lama) {
         $queryUpdatePemeran = "UPDATE pemeran SET film='$film' WHERE film='$film_lama'";
         mysqli_query($conn, $queryUpdatePemeran);
     }
 
-    $query = "UPDATE film
-              SET
-              film = '$film',
-              penghargaan = '$penghargaan',
-              sinopsis = '$sinopsis',
-              trailer = '$trailer'
-
-              WHERE id_film = $id_film";
-
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+    $stmt = $conn->prepare("UPDATE film
+                        SET
+                        film = ?,
+                        writers = ?,
+                        director = ?,
+                        genre = ?,
+                        sinopsis = ?,
+                        trailer = ?
+                        WHERE id_film = ?");
+    $stmt->bind_param("ssssssi", $film, $writers, $director, $genre, $sinopsis, $trailer, $id_film);
+    $stmt->execute();
 
 }
 //method tambahan
