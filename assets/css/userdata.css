@@ -1,0 +1,177 @@
+* {
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: #20252c;
+}
+
+nav {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  background-color: #13171b;
+  width: 90px;
+  overflow: hidden;
+  transition: width 0.2s linear;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo-image {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* Change from row to column */
+  align-items: center;
+
+  /* Align items to the center */
+  transition: all 0.5s ease;
+}
+
+.logo-image img {
+  width: 40px;
+  margin-left: 1.2rem;
+  height: auto;
+}
+
+.logo-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* Change from row to column */
+  align-items: flex-start;
+  /* Align items to the start (left) */
+  transition: all 0.5s ease;
+  margin: 0.5rem 0 0 1.5rem;
+  /* Adjust margin as needed */
+}
+
+.logo-text span {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  display: block;
+}
+
+a {
+  position: relative;
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  /* Change to flex to allow for flexible layout */
+  align-items: center;
+  /* Align items to the center vertically */
+  width: 300px;
+  padding: 0.6rem;
+}
+
+a:hover {
+  color: #962333;
+  transition: all 0.3s ease;
+}
+
+.fa {
+  position: relative;
+  width: 4.3rem;
+  height: 2.5rem;
+  top: 14px;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+nav:hover {
+  width: 280px;
+  transition: all 0.5s ease;
+}
+
+.logout {
+  position: absolute;
+  bottom: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.content-sidebar a {
+  margin-left: 2rem;
+}
+
+.content-sidebar span {
+  margin-left: 2.5rem;
+}
+
+.text-cast span {
+  margin-left: 2.1rem;
+}
+
+/* start content  */
+.container {
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 10rem;
+  color: #fff;
+}
+.content img {
+  width: 450px;
+  height: auto;
+}
+
+.content-header-cast {
+  color: #962333;
+  text-shadow: 1px 1px 1px #ff0000;
+}
+
+.search-cast {
+  margin-top: 8rem;
+}
+
+.search-cast input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.search-cast button {
+  display: float;
+  float: right;
+  margin-right: 7rem;
+  padding: 0.5rem;
+  color: #fff;
+  background-color: #a32633;
+  border-radius: 0.3rem;
+}
+
+.search-cast i {
+  margin-right: 0.5rem;
+}
+
+.table-data table td {
+  border: 1px solid #fff;
+}
+
+.table-data table {
+  border: 1px solid #fff;
+  width: 90%;
+  margin-top: 3rem;
+}
+
+.table-data table td {
+  padding: 0.5rem;
+}
+
+.aksi a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* end content  */
