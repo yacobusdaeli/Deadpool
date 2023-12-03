@@ -1,14 +1,14 @@
 <?php
 require 'method.php';
 session_start();
-if (!isset($_SESSION["user"])) {
+if (isset($_SESSION["user"]) == false) {
     echo "
     <script> alert('Anda melakukan hal ilegal');
     document.location.href= 'login.php';
     </script>
     ";
     exit();
-} else if (!isset($_SESSION["admin"])) {
+} else if (isset($_SESSION["admin"]) == false) {
     echo "
     <script> alert('Anda melakukan hal ilegal');
     document.location.href= 'login.php';

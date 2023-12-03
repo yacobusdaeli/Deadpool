@@ -1,14 +1,14 @@
 <?php
 require '../method.php';
-// session_start();
-// if (!isset($_SESSION["admin"])) {
-//     echo "
-//     <script> alert('Anda melakukan hal ilegal');
-//     document.location.href= 'login.php';
-//     </script>
-//     ";
-//     exit();
-// }
+session_start();
+if (isset($_SESSION["admin"]) == false) {
+    echo "
+    <script> alert('Anda melakukan hal ilegal');
+    document.location.href= '../login.php';
+    </script>
+    ";
+    exit();
+}
 
 if (isset($_POST['edit'])) {
     if (editFilm($_POST) > 0) {

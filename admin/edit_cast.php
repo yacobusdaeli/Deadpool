@@ -1,10 +1,10 @@
 <?php
 require '../method.php';
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (isset($_SESSION["admin"]) == false) {
     echo "
     <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
+    document.location.href= '../login.php';
     </script>
     ";
     exit();
@@ -56,7 +56,7 @@ if (isset($_POST['edit'])) {
                 <input type="hidden" name="fotocardLama" value="<?=$cast['fotocard']?>">
                 <div class="card">
                     <!-- <img src="../figh-club.jpg" alt="Ryan Reynolds" /> -->
-                    <img style="width: ; margin:130px" src="../foto/<?=$cast['foto']?>" alt="Photo 1">
+                    <img style=" margin:130px; max-width: 500px;" src="../foto/<?=$cast['foto']?>" alt="Photo 1">
                 </div>
 
         </div>
