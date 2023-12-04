@@ -9,6 +9,9 @@ if (!$_SESSION["admin"]) {
     ";
     exit();
 }
+if (isset($_POST['hapus'])) {
+    $perintah = "DELETE FROM pemeran WHERE nama_asli";
+}
 $query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
 

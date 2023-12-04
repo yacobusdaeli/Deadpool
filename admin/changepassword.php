@@ -1,25 +1,48 @@
 <?php
 require '../method.php';
 session_start();
-if (!$_SESSION["admin"]) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= '../login.php';
-    </script>
-    ";
-    exit();
+global $conn;
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($_POST['hapus'])) {
-    $delete = $_POST['hapus'];
-    $query2 = "DELETE FROM pemeran WHERE id_pemeran=$delete";
-    mysqli_query($conn, $query2);
-    header("Location: data_castadmin.php");
-}
-$query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
-$cast = tampilsemua($query);
+$username = $_SESSION['username'];
 
+if (isset($_POST['done'])) {
+
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
+    $newpassword = mysqli_real_escape_string($conn, $_POST["newpassword"]);
+    $newpassword2 = mysqli_real_escape_string($conn, $_POST["newpassword2"]);
+
+    $result = mysqli_query($conn, "SELECT * FROM role WHERE username = '$username'");
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_array($result);
+
+        if ($password == $row["password"] && $newpassword == $newpassword2) {
+            $updateQuery = "UPDATE role SET password='$newpassword' WHERE username='$username'";
+            if (mysqli_query($conn, $updateQuery)) {
+                echo "
+                <script>
+                alert('Change Password Done');
+                document.location.href= 'changepassword.php';
+                </script>
+                ";
+            } else {
+                echo "Error updating record: " . mysqli_error($conn);
+            }
+        } else {
+            echo "Passwords don't match.";
+        }
+    } else {
+        echo "User not found.";
+    }
+}
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +58,7 @@ $cast = tampilsemua($query);
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/adminpage.css">
+    <link rel="stylesheet" href="../assets/css/changepassword.css">
 </head>
 
 <body>
@@ -51,7 +74,7 @@ $cast = tampilsemua($query);
                     </div>
                     <div class="logo-text">
                         <span><?=$_SESSION['username']?></span>
-                        <span>[Admin]</span>
+                        <span>Admin</span>
                     </div>
                 </a>
             </li>
@@ -69,7 +92,7 @@ $cast = tampilsemua($query);
                     </a>
                 </li>
                 <li>
-                    <a href="changepassword.php">
+                    <a href="#">
                         <i class="fa-solid fa-lock"></i>
                         <span class="nav-item">Change Password</span>
                     </a>
@@ -89,58 +112,18 @@ $cast = tampilsemua($query);
     <!-- Start content  -->
     <div class="container">
         <div class="content-header-cast">
-            <h1>ADD CAST</h1>
+            <h1>CHANGE PASSWORD</h1>
         </div>
-        <div class="search-cast" style="">
-            <input type="text" placeholder="Search">
-
-            <a href="add_castadmin.php" style="margin-left: auto; display:inline;">
-                <button type="submit"><i class="fa-solid fa-plus"></i>Add Cast</button>
-            </a>
-
-
-        </div>
-        <div class="table-data">
-            <form action="">
-                <table cellpadding="3">
-                    <tr>
-                        <th>No</th>
-                        <th>Photo Card</th>
-                        <th>Cast Name</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-
-                    <?php $i = 1?>
-                    <?php foreach ($cast as $baris): ?>
-                    <tr>
-                        <td><?=$i?></td>
-                        <td>
-                            <div class="card">
-                            </div><img style="max-width : 160px" src="../fotocard/<?=$baris['fotocard']?>"
-                                alt="Photo 1">
-                        </td>
-                        <td>
-                            <?=$baris['nama_asli']?>
-                        </td>
-
-                        <td>
-                            <?=$baris['nama_tokoh']?>
-                        </td>
-
-                        <td class="aksi">
-                            <a href=" edit_cast.php?id_tokoh=<?=$baris['id_tokoh']?>">Edit</a>
-
-                            <a href="hapus_cast.php?id_tokoh=<?=$baris['id_tokoh']?>">Delete</a>
-
-                        </td>
-
-                    </tr>
-                    <?php $i++?>
-                    <?php endforeach?>
-                </table>
+        <div class="container-password">
+            <form method="post">
+                <input type="password" name="password" id="currentpassword" placeholder="Current Password">
+                <input type="password" name="newpassword" id="newpassword" placeholder="New Password">
+                <input type="password" name="newpassword2" id="newpassword2" placeholder="Re-type New Password">
+                <button type="submit" name="done">Done</button>
             </form>
         </div>
+        </form>
+    </div>
     </div>
 
 

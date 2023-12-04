@@ -21,7 +21,7 @@ if (isset($_POST['edit'])) {
         echo "
         <script>
         alert('Pemeran berhasil ditampilkan');
-        document.location.href = 'data_cast.php';
+        document.location.href = 'data_castadmin.php';
         </script>
         ";
     }
@@ -40,10 +40,57 @@ if (isset($_POST['edit'])) {
     <link rel="stylesheet" href="../assets/css/home.css" />
     <link rel="stylesheet" href="../assets/css/navbar.css" />
     <link rel="stylesheet" href="../assets/css/card.css" />
+    <link rel="stylesheet" href="../assets/css/adminpage.css">
+
 </head>
 
 <body>
 
+    <!-- Start Sidebar -->
+    <nav>
+        <ul>
+            <!-- Icon  -->
+            <li>
+                <a href="homeadmin.php">
+                    <div class="logo-image">
+                        <img src="../assets/css/profil-img.jpg" alt=""></img>
+                    </div>
+                    <div class="logo-text">
+                        <span><?=$_SESSION['username']?></span>
+                        <span>[Admin]</span>
+                    </div>
+                </a>
+            </li>
+            <div class="content-sidebar">
+                <li>
+                    <a href="data_castadmin.php" class="text-cast">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span class="nav-item">Add Cast</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="userdata.php">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span class="nav-item">User Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="changepassword.php">
+                        <i class="fa-solid fa-lock"></i>
+                        <span class="nav-item">Change Password</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../logout.php" class="logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-item">{Logout}</span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+
+    <!-- End Side Bar -->
 
     <div class="container-card-card">
         <div class="card-img-card" style="display: flex;">

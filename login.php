@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user'] = 'false';
 
             $_SESSION['username'] = $row['username'];
-            header("Location: admin/admin_home.php");
+            header("Location: admin/homeadmin.php");
             exit;
         } else {
             echo "
