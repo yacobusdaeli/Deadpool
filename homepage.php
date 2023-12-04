@@ -1,20 +1,22 @@
 <?php
 session_start();
-if (isset($_SESSION["user"]) == false) {
+if (!$_SESSION["user"] and !$_SESSION["admin"]) {
     echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-} else if (isset($_SESSION["admin"]) == false) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
+    <script>
+        alert('Anda melakukan hal ilegal');
+        document.location.href= 'login.php';
     </script>
     ";
     exit();
 }
+// else if (!$_SESSION["admin"]) {
+//     echo "
+//     <script>
+//         alert('Anda melakukan hal ilegal');
+//         document.location.href= 'login.php';
+//     </script>
+//     ";
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

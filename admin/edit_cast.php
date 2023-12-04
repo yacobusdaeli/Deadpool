@@ -1,7 +1,7 @@
 <?php
 require '../method.php';
 session_start();
-if (isset($_SESSION["admin"]) == false) {
+if (!$_SESSION["admin"]) {
     echo "
     <script> alert('Anda melakukan hal ilegal');
     document.location.href= '../login.php';
