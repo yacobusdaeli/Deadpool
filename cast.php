@@ -1,22 +1,15 @@
 <?php
 require 'method.php';
 session_start();
-if (isset($_SESSION["user"]) == false) {
+if (!$_SESSION["user"] and !$_SESSION["admin"]) {
     echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
-    </script>
-    ";
-    exit();
-} else if (isset($_SESSION["admin"]) == false) {
-    echo "
-    <script> alert('Anda melakukan hal ilegal');
-    document.location.href= 'login.php';
+    <script>
+        alert('Anda melakukan hal ilegal');
+        document.location.href= 'login.php';
     </script>
     ";
     exit();
 }
-
 $query = "SELECT pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.fotocard FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
 
