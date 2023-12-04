@@ -56,7 +56,7 @@ if (isset($_POST['edit'])) {
                 <input type="hidden" name="fotocardLama" value="<?=$cast['fotocard']?>">
                 <div class="card">
                     <!-- <img src="../figh-club.jpg" alt="Ryan Reynolds" /> -->
-                    <img style=" margin:130px; max-width: 500px;" src="../foto/<?=$cast['foto']?>" alt="Photo 1">
+                    <img style=" margin:130px; max-width: 300px;" src="../foto/<?=$cast['foto']?>" alt="Photo 1">
                 </div>
 
         </div>
@@ -137,6 +137,8 @@ if (isset($_POST['edit'])) {
                             </td>
                         </tr>
                         <tr>
+                            <td>Movie</td>
+                            <td>:</td>
                             <td>
                                 <select name="id_film">
 

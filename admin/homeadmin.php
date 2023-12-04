@@ -11,15 +11,6 @@ if (!$_SESSION["admin"]) {
 }
 global $conn;
 
-$query = "SELECT*FROM role ORDER BY role ASC";
-$user = tampilsemua($query);
-
-if (isset($_POST['hapus'])) {
-    $delete = $_POST['hapus'];
-    $query2 = "DELETE FROM role WHERE username='$delete'";
-    mysqli_query($conn, $query2);
-    header("Location: admin_home.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +27,8 @@ if (isset($_POST['hapus'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/userdata.css">
+    <link rel="stylesheet" href="../assets/css/adminpage.css">
+
 </head>
 
 <body>
@@ -46,7 +38,7 @@ if (isset($_POST['hapus'])) {
         <ul>
             <!-- Icon  -->
             <li>
-                <a href="homeadmin.php">
+                <a href="#">
                     <div class="logo-image">
                         <img src="../assets/css/profil-img.jpg" alt=""></img>
                     </div>
@@ -85,47 +77,19 @@ if (isset($_POST['hapus'])) {
         </ul>
     </nav>
 
-
     <!-- End Side Bar -->
 
-    <!-- Start content  -->
+    <!-- start content  -->
     <div class="container">
-        <div class="content-header-cast">
-            <h1>USER DATA</h1>
+        <div class="content-header">
+            <h1>Halo <?=$_SESSION['username']?></h1> <!-- Panggil dari username-->
         </div>
-        <div class="search-cast">
-            <input type="text" placeholder="Search">
-        </div>
-        <div class="table-data">
-            <form action="">
-                <table>
-                    <tr>
-                        <th>NO</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Role</th>
-
-                    </tr>
-                    <?php $i = 1?>
-                    <?php foreach ($user as $row): ?>
-                    <tr>
-                        <td><?=$i?></td>
-                        <td><?=$row['username']?></td>
-                        <td><?=$row['email']?></td>
-                        <td><?=$row['role']?></td>
-                    </tr>
-                    <?php $i++?>
-                    <?php endforeach;?>
-
-
-                </table>
-            </form>
+        <div class="content">
+            <img src="../assets/css/sinopsis no bg.png" alt="">
         </div>
     </div>
+    <!-- end content  -->
 
-
-
-    <!-- End Content   -->
 </body>
 
 </html>

@@ -9,6 +9,13 @@ if (!$_SESSION["admin"]) {
     ";
     exit();
 }
+
+if (isset($_POST['hapus'])) {
+    $delete = $_POST['hapus'];
+    $query2 = "DELETE FROM pemeran WHERE id_pemeran='$delete'";
+    mysqli_query($conn, $query2);
+    header("Location: data_castadmin.php");
+}
 $query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
 $cast = tampilsemua($query);
 
@@ -38,9 +45,9 @@ $cast = tampilsemua($query);
         <ul>
             <!-- Icon  -->
             <li>
-                <a href="#">
+                <a href="homeadmin.php">
                     <div class="logo-image">
-                        <img src="assets/css/profil-img.jpg" alt=""></img>
+                        <img src="../assets/css/profil-img.jpg" alt=""></img>
                     </div>
                     <div class="logo-text">
                         <span><?=$_SESSION['username']?></span>
@@ -50,25 +57,25 @@ $cast = tampilsemua($query);
             </li>
             <div class="content-sidebar">
                 <li>
-                    <a href="addcastadmin.html" class="text-cast">
+                    <a href="data_castadmin.php" class="text-cast">
                         <i class="fa-solid fa-user-pen"></i>
                         <span class="nav-item">Add Cast</span>
                     </a>
                 </li>
                 <li>
-                    <a href="userdata.html">
+                    <a href="userdata.php">
                         <i class="fa-regular fa-clipboard"></i>
                         <span class="nav-item">User Data</span>
                     </a>
                 </li>
                 <li>
-                    <a href="changepassword.html">
+                    <a href="changepassword.php">
                         <i class="fa-solid fa-lock"></i>
                         <span class="nav-item">Change Password</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="logout">
+                    <a href="../logout.php" class="logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="nav-item">{Logout}</span>
                     </a>
@@ -84,42 +91,54 @@ $cast = tampilsemua($query);
         <div class="content-header-cast">
             <h1>ADD CAST</h1>
         </div>
-        <div class="search-cast">
+        <div class="search-cast" style="">
             <input type="text" placeholder="Search">
-            <button type="submit" value="tambahcast"><i class="fa-solid fa-plus"></i>Add Cast</button>
+
+            <a href="add_castadmin.php" style="margin-left: auto; display:inline;">
+                <button type="submit"><i class="fa-solid fa-plus"></i>Add Cast</button>
+            </a>
+
+
         </div>
         <div class="table-data">
             <form action="">
-                <table>
+                <table cellpadding="3">
                     <tr>
                         <th>No</th>
                         <th>Photo Card</th>
                         <th>Cast Name</th>
                         <th>Role</th>
-                        <th>Cast Biography</th>
-                        <th>Role Description</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>Photo</td>
-                        <td>Photo</td>
-                        <td>Ryan Renold</td>
-                        <td>Deadpool</td>
-                        <td>Born : Ryan Rodney Reynolds
-                            23 October 1976
-                            Vancouver, British Columbia, Canada
-                            Citizenship : Canada - United States
-                            Occupations : Actor - producer - businessman - writer
-                            Years active : 1991–present</td>
-                        <td>Deadpool is the alter ego of Wade Wilson, a disfigured Canadian mercenary with superhuman
-                            regenerative healing abilities. He is known for his tendency to joke incessantly and break
-                            the fourth wall for humorous effect</td>
-                        <td class="aksi">
-                            <a href="">Edit</a>
-                            <a href="">Delete</a>
-                        </td>
-                    </tr>
 
+                    <?php $i = 1?>
+                    <?php foreach ($cast as $baris): ?>
+                    <tr>
+                        <td><?=$i?></td>
+                        <td>
+                            <div class="card">
+                            </div><img style="max-width : 160px" src="../fotocard/<?=$baris['fotocard']?>"
+                                alt="Photo 1">
+                        </td>
+                        <td>
+                            <?=$baris['nama_asli']?>
+                        </td>
+
+                        <td>
+                            <?=$baris['nama_tokoh']?>
+                        </td>
+
+                        <td class="aksi">
+                            <a href=" edit_cast.php?id_tokoh=<?=$baris['id_tokoh']?>">Edit</a>
+
+                            <form method="post"><button name="hapus" value="<?=$baris['nama_asli']?>">Delete</button>
+                            </form>
+
+                        </td>
+
+                    </tr>
+                    <?php $i++?>
+                    <?php endforeach?>
                 </table>
             </form>
         </div>

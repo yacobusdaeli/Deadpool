@@ -9,17 +9,9 @@ if (!$_SESSION["admin"]) {
     ";
     exit();
 }
-global $conn;
+$query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
+$cast = tampilsemua($query);
 
-$query = "SELECT*FROM role ORDER BY role ASC";
-$user = tampilsemua($query);
-
-if (isset($_POST['hapus'])) {
-    $delete = $_POST['hapus'];
-    $query2 = "DELETE FROM role WHERE username='$delete'";
-    mysqli_query($conn, $query2);
-    header("Location: admin_home.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +28,7 @@ if (isset($_POST['hapus'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/userdata.css">
+    <link rel="stylesheet" href="../assets/css/adminpage.css">
 </head>
 
 <body>
@@ -85,39 +77,55 @@ if (isset($_POST['hapus'])) {
         </ul>
     </nav>
 
-
     <!-- End Side Bar -->
 
     <!-- Start content  -->
     <div class="container">
         <div class="content-header-cast">
-            <h1>USER DATA</h1>
+            <h1>ADD CAST</h1>
         </div>
         <div class="search-cast">
             <input type="text" placeholder="Search">
+            <button type="submit" value="tambahcast"><i class="fa-solid fa-plus"></i>Add Cast</button>
         </div>
         <div class="table-data">
             <form action="">
-                <table>
+                <table cellpadding="3">
                     <tr>
-                        <th>NO</th>
-                        <th>Username</th>
-                        <th>Email</th>
+                        <th>No</th>
+                        <th>Photo Card</th>
+                        <th>Cast Name</th>
                         <th>Role</th>
-
+                        <th>Action</th>
                     </tr>
+
                     <?php $i = 1?>
-                    <?php foreach ($user as $row): ?>
+                    <?php foreach ($cast as $baris): ?>
                     <tr>
                         <td><?=$i?></td>
-                        <td><?=$row['username']?></td>
-                        <td><?=$row['email']?></td>
-                        <td><?=$row['role']?></td>
+                        <td>
+                            <div class="card">
+                            </div><img style="max-width : 160px" src="../fotocard/<?=$baris['fotocard']?>"
+                                alt="Photo 1">
+                        </td>
+                        <td>
+                            <?=$baris['nama_asli']?>
+                        </td>
+
+                        <td>
+                            <?=$baris['nama_tokoh']?>
+                        </td>
+
+                        <td class="aksi">
+                            <a href=" edit_cast.php?id_tokoh=<?=$baris['id_tokoh']?>">Edit</a>
+
+                            <form method="post"><a name="hapus">Delete</a></form>
+
+                        </td>
+
                     </tr>
                     <?php $i++?>
-                    <?php endforeach;?>
-
-
+                    <?php endforeach?>
                 </table>
             </form>
         </div>
