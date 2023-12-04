@@ -9,17 +9,9 @@ if (!$_SESSION["admin"]) {
     ";
     exit();
 }
-global $conn;
+$query = "SELECT pemeran.fotocard,pemeran.id_tokoh,pemeran.nama_asli, pemeran.nama_tokoh, pemeran.foto FROM pemeran order by nama_asli asc";
+$cast = tampilsemua($query);
 
-$query = "SELECT*FROM role ORDER BY role ASC";
-$user = tampilsemua($query);
-
-if (isset($_POST['hapus'])) {
-    $delete = $_POST['hapus'];
-    $query2 = "DELETE FROM role WHERE username='$delete'";
-    mysqli_query($conn, $query2);
-    header("Location: admin_home.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +28,7 @@ if (isset($_POST['hapus'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/userdata.css">
+    <link rel="stylesheet" href="../assets/css/adminpage.css">
 </head>
 
 <body>
@@ -58,25 +50,25 @@ if (isset($_POST['hapus'])) {
             </li>
             <div class="content-sidebar">
                 <li>
-                    <a href="data_castadmin.php" class="text-cast">
+                    <a href="addcastadmin.html" class="text-cast">
                         <i class="fa-solid fa-user-pen"></i>
                         <span class="nav-item">Add Cast</span>
                     </a>
                 </li>
                 <li>
-                    <a href="userdata.php">
+                    <a href="userdata.html">
                         <i class="fa-regular fa-clipboard"></i>
                         <span class="nav-item">User Data</span>
                     </a>
                 </li>
                 <li>
-                    <a href="changepassword.php">
+                    <a href="changepassword.html">
                         <i class="fa-solid fa-lock"></i>
                         <span class="nav-item">Change Password</span>
                     </a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="logout">
+                    <a href="#" class="logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="nav-item">{Logout}</span>
                     </a>
@@ -90,32 +82,43 @@ if (isset($_POST['hapus'])) {
     <!-- Start content  -->
     <div class="container">
         <div class="content-header-cast">
-            <h1>USER DATA</h1>
+            <h1>ADD CAST</h1>
         </div>
         <div class="search-cast">
             <input type="text" placeholder="Search">
+            <button type="submit" value="tambahcast"><i class="fa-solid fa-plus"></i>Add Cast</button>
         </div>
         <div class="table-data">
             <form action="">
                 <table>
                     <tr>
-                        <th>NO</th>
-                        <th>Username</th>
-                        <th>Email</th>
+                        <th>No</th>
+                        <th>Photo Card</th>
+                        <th>Cast Name</th>
                         <th>Role</th>
-
+                        <th>Cast Biography</th>
+                        <th>Role Description</th>
+                        <th>Action</th>
                     </tr>
-                    <?php $i = 1?>
-                    <?php foreach ($user as $row): ?>
                     <tr>
-                        <td><?=$i?></td>
-                        <td><?=$row['username']?></td>
-                        <td><?=$row['email']?></td>
-                        <td><?=$row['role']?></td>
+                        <td>Photo</td>
+                        <td>Photo</td>
+                        <td>Ryan Renold</td>
+                        <td>Deadpool</td>
+                        <td>Born : Ryan Rodney Reynolds
+                            23 October 1976
+                            Vancouver, British Columbia, Canada
+                            Citizenship : Canada - United States
+                            Occupations : Actor - producer - businessman - writer
+                            Years active : 1991–present</td>
+                        <td>Deadpool is the alter ego of Wade Wilson, a disfigured Canadian mercenary with superhuman
+                            regenerative healing abilities. He is known for his tendency to joke incessantly and break
+                            the fourth wall for humorous effect</td>
+                        <td class="aksi">
+                            <a href="">Edit</a>
+                            <a href="">Delete</a>
+                        </td>
                     </tr>
-                    <?php $i++?>
-                    <?php endforeach;?>
-
 
                 </table>
             </form>
