@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 11:45 PM
+-- Generation Time: Dec 05, 2023 at 03:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -75,7 +75,7 @@ INSERT INTO `pemeran` (`id_tokoh`, `nama_asli`, `nama_tokoh`, `nama_panjang`, `l
 (9, 'ED SKREIN', 'AJAX', 'Ed Skrein', 'UK', 'British', 'Actor, Rapper', '1990', 'Edward George \"Ed\" Skrein is an English rapper and actor. Outside his rap career, he is best known for his roles as Daario Naharis in the series Game of Thrones and Francis Freeman / Ajax in the film Deadpool.', 'ajax.jpeg', 'card4.jpeg', 6),
 (10, 'MORENA BACCARIN', 'VANESSA', 'Morena Baccarin', 'Brazil', 'Brazil and United State of America', 'Artist', '2000', 'Morena Baccarin is a Brazilian-American actress known for her roles in TV series like \"Firefly,\" \"Homeland,\" and for portraying Vanessa Carlysle in the films \"Deadpool\" and \"Deadpool 2.\"\r\nBorn: Morena Baccarin was born on June 2, 1979, in Rio de Janeiro, Brazil.\r\nCitizenship: She holds dual citizenship, Brazilian and American.', 'morena baccarin.jpeg', 'card2.jpeg', 6),
 (11, 'GINA CARANO', 'ANGEL DUST', 'GINA CARANO', 'April 16, 1982, in Dallas County, Texas, United States.', 'United State of America', 'Actress, former mixed martial artist', '2006', 'Gina Carano is an American actress and former mixed martial artist. She gained prominence for her roles in entertainment and her accomplishments in the field of martial arts. Carano transitioned from a successful career in mixed martial arts to acting. She is known for her roles in films such as \"Haywire\" and \"Fast & Furious 6,\" showcasing her skills both as an actress and a physical performer.', 'idaqmgf07jv8o92bnip6a6ltd6-5765ae2732b18437ecb7fc3cae17edcb.png', 'card3.jpg', 6),
-(12, 'T. J. MILLER', 'WEASEL', 'T. J. Miller', 'June 4, 1981, in Denver, Colorado, United States.', 'United State of America', '0', '2007 - present', 'T.J. Miller is an American actor and comedian known for his distinct comedic style and acting roles in various films and television shows. He\'s recognized for his contributions to the entertainment industry as both an actor and a stand-up comedian.', 'Miller.jpg', 'card5.jpg', 6);
+(12, 'T. J. MILLER', 'WEASEL', 'T. J. Miller', 'June 4, 1981, in Denver, Colorado, United States.', 'United State of America', 'Actor, Comedian', '2007', 'T.J. Miller is an American actor and comedian known for his distinct comedic style and acting roles in various films and television shows. He\'s recognized for his contributions to the entertainment industry as both an actor and a stand-up comedian.', 'Miller.jpg', 'card5.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -96,8 +96,9 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id_user`, `username`, `email`, `role`, `password`) VALUES
-(2, '', 'admin_firman@gmail.com', 'admin', 'admin'),
-(3, 'panji', 'panji@gmail.com', 'user', '123');
+(2, 'firman', 'admin_firman@gmail.com', 'admin', 'admin'),
+(3, 'panji', 'panji@gmail.com', 'user', '123'),
+(4, 'panji_admin', 'panji123@gmail.com', 'admin', '12345');
 
 --
 -- Indexes for dumped tables
@@ -136,13 +137,13 @@ ALTER TABLE `film`
 -- AUTO_INCREMENT for table `pemeran`
 --
 ALTER TABLE `pemeran`
-  MODIFY `id_tokoh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_tokoh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
